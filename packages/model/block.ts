@@ -145,7 +145,7 @@ export class BlockModelFactory {
     /**
      * Get threejs `Object3D` for that block model.
      */
-    getObject(model: BlockModel.Resolved, options?: { uvlock?: boolean; y?: number; x?: number }) {
+    async getObject(model: BlockModel.Resolved, options?: { uvlock?: boolean; y?: number; x?: number, waitForTextures?: boolean }) {
         const option = this.option;
         const textureRegistry = this.textureRegistry;
 
@@ -176,7 +176,18 @@ export class BlockModelFactory {
                 } else if (texPath in textureRegistry) {
                     // build new material
                     const tex = textureRegistry[texPath];
-                    const texture = this.loader.load(tex.url);
+
+                    let texture: any;
+
+                    if (options?.waitForTextures === true) {
+                        texture = await new Promise((r) => {
+                            this.loader.load(tex.url, (texture: any) => {
+                                r(texture);
+                            });
+                        });
+                    } else {
+                        texture = this.loader.load(tex.url);
+                    }
 
                     // sharp pixels and smooth edges
                     texture.magFilter = NearestFilter;

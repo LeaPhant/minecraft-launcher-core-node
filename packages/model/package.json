@@ -1,15 +1,10 @@
 {
   "name": "@xmcl/model",
   "version": "1.0.22",
-  "main": "./index.ts",
+  "main": "./dist/index.js",
   "description": "Create Three.js model for player and block",
   "engines": {
     "node": ">=10.0"
-  },
-  "publishConfig": {
-    "access": "public",
-    "main": "./dist/index.js",
-    "module": "./dist/index.esm.js"
   },
   "dependencies": {
     "@types/three": "^0.141.0",

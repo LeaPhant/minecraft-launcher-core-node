@@ -1,5 +1,8 @@
 const definitions = {};
-definitions['@xmcl/client/channel.d.ts'] = `\/\// <reference types="node" /> import ByteBuffer from "bytebuffer";
+definitions['@xmcl/client/channel.d.ts'] = `\/\// <reference types="node" /> \/\// <reference types="node" />
+\/\// <reference types="node" />
+\/\// <reference types="node" />
+import ByteBuffer from "bytebuffer";
 import { EventEmitter } from "events";
 import { NetConnectOpts } from "net";
 import { Transform, TransformCallback, Writable } from "stream";
@@ -93,38 +96,6 @@ declare class PacketCoders {
 }
 export {};
 \/\/# sourceMappingURL=channel.d.ts.map`;
-definitions['@xmcl/client/coders.d.ts'] = `\/\// <reference types="long" /> import ByteBuffer from "bytebuffer";
-import type { PacketRegistry } from "./channel";
-export interface SlotData {
-    blockId: number;
-    itemCount?: number;
-    itemDamage?: number;
-    nbt?: any;
-}
-/**
- * The packet encode/decode algorithm
- */
-export interface Coder<T> {
-    readonly encode: (buffer: ByteBuffer, data: T, context?: PacketRegistry) => void;
-    readonly decode: (buffer: ByteBuffer, context?: PacketRegistry) => T;
-}
-export declare const VarInt: Coder<number>;
-export declare const Int: Coder<number>;
-export declare const Byte: Coder<number>;
-export declare const UByte: Coder<number>;
-export declare const Bool: Coder<boolean>;
-export declare const Float: Coder<number>;
-export declare const Double: Coder<number>;
-export declare const UUID: Coder<string>;
-export declare const Short: Coder<number>;
-export declare const UShort: Coder<number>;
-export declare const Long: Coder<Long>;
-export declare const VarLong: Coder<Long>;
-export declare const String: Coder<string>;
-export declare const Json: Coder<any>;
-export declare const Slot: Coder<SlotData>;
-export declare const ByteArray: Coder<Int8Array>;
-\/\/# sourceMappingURL=coders.d.ts.map`;
 definitions['@xmcl/client/index.d.ts'] = `/**  * The client for Minecraft protocol. I can create the connection with Minecraft server and ping the server status.
  *
  * You can use {@link queryStatus} with {@link QueryOptions} to ping a {@link Status} of a server
@@ -138,7 +109,8 @@ export * from "./channel";
 export * from "./status";
 export * from "./lan";
 \/\/# sourceMappingURL=index.d.ts.map`;
-definitions['@xmcl/client/lan.d.ts'] = `\/\// <reference types="node" /> import { RemoteInfo } from "dgram";
+definitions['@xmcl/client/lan.d.ts'] = `\/\// <reference types="node" /> \/\// <reference types="node" />
+import { RemoteInfo } from "dgram";
 import { EventEmitter } from "events";
 export declare const LAN_MULTICAST_ADDR = "224.0.2.60";
 export declare const LAN_MULTICAST_PORT = 4445;
@@ -224,7 +196,7 @@ export declare class ServerStatus {
     status: Status;
 }
 export declare class Ping {
-    time: Long.Long;
+    time: any;
 }
 export declare class Pong {
     ping: Long;
@@ -559,7 +531,8 @@ export * from "./folder";
 export * from "./diagnose";
 export { access as _access, exists as _exists, mkdir as _mkdir, readFile as _readFile, writeFile as _writeFile, pipeline as _pipeline, checksum } from "./utils";
 \/\/# sourceMappingURL=index.d.ts.map`;
-definitions['@xmcl/core/launch.d.ts'] = `\/\// <reference types="node" /> import { ChildProcess, SpawnOptions } from "child_process";
+definitions['@xmcl/core/launch.d.ts'] = `\/\// <reference types="node" /> \/\// <reference types="node" />
+import { ChildProcess, SpawnOptions } from "child_process";
 import { EventEmitter } from "events";
 import { MinecraftFolder } from "./folder";
 import { Platform } from "./platform";
@@ -945,6 +918,7 @@ export declare function getPlatform(): Platform;
 \/\/# sourceMappingURL=platform.d.ts.map`;
 definitions['@xmcl/core/utils.d.ts'] = `/**  * @ignore
  */
+\/\// <reference types="node" />
 \/\// <reference types="node" />
 import { readFile as freadFile, writeFile as fwriteFile, access as faccess, mkdir as fmkdir, link as flink } from "fs";
 import { pipeline as pip } from "stream";
@@ -1631,7 +1605,7 @@ export interface File {
     /**
      * Url to download
      */
-    downloadUrl: string;
+    downloadUrl?: string;
     /**
      * Game version string array, like \`["1.12.2"]\`
      */
@@ -1987,21 +1961,21 @@ export declare enum Difficulty {
 export declare type MipmapLevel = 0 | 1 | 2 | 3 | 4;
 export declare type RenderDistance = 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 | 11 | 12 | 13 | 14 | 15 | 16 | 17 | 18 | 19 | 20 | 21 | 22 | 23 | 24 | 25 | 26 | 27 | 28 | 29 | 30 | 31 | 32;
 export declare const RenderDistance: Readonly<{
-    Tiny: number;
-    Short: number;
-    Normal: number;
-    Far: number;
-    Extreme: number;
+    Tiny: 2;
+    Short: 4;
+    Normal: 8;
+    Far: 16;
+    Extreme: 32;
 }>;
 export declare const Graphic: Readonly<{
-    Fast: boolean;
-    Fancy: boolean;
+    Fast: false;
+    Fancy: true;
 }>;
 export declare type Graphic = boolean;
 export declare const RenderCloud: Readonly<{
-    Off: boolean;
-    Fast: string;
-    Fancy: boolean;
+    Off: false;
+    Fast: "fast";
+    Fancy: true;
 }>;
 export declare type RenderCloud = true | false | "fast";
 export declare enum KeyCode {
@@ -2246,7 +2220,8 @@ export declare function stringify(setting: GameSetting | Frame | any, original?:
 export declare type GameSetting = ReturnType<typeof getDefaultFrame>;
 export {};
 \/\/# sourceMappingURL=index.d.ts.map`;
-definitions['@xmcl/installer/curseforge.d.ts'] = `\/\// <reference types="node" /> import { MinecraftFolder, MinecraftLocation } from "@xmcl/core";
+definitions['@xmcl/installer/curseforge.d.ts'] = `\/\// <reference types="node" /> \/\// <reference types="node" />
+import { MinecraftFolder, MinecraftLocation } from "@xmcl/core";
 import { Task } from "@xmcl/task";
 import { Agent as HttpsAgent } from "https";
 import { Entry, ZipFile } from "yauzl";
@@ -2336,7 +2311,7 @@ export declare function readManifestTask(input: InputType): Task<Manifest>;
  * Read the mainifest data from modpack
  * @throws {@link BadCurseforgeModpackError}
  */
-export declare function readManifest(zip: InputType): Promise<Manifest>;
+export declare function readManifest(zip: InputType): any;
 export declare type FilePathResolver = (projectId: number, fileId: number, minecraft: MinecraftFolder, url: string) => string | Promise<string>;
 export declare type CurseforgeURLQuery = (projectId: number, fileId: number) => Promise<string>;
 export declare type CurseforgeFileTypeQuery = (projectId: number) => Promise<"mods" | "resourcepacks">;
@@ -2348,7 +2323,7 @@ export declare function createDefaultCurseforgeQuery(agent?: HttpsAgent): Cursef
  * @param minecraft The minecraft location
  * @param options The options for query curseforge
  */
-export declare function installCurseforgeModpack(zip: InputType, minecraft: MinecraftLocation, options?: CurseforgeOptions): Promise<Manifest>;
+export declare function installCurseforgeModpack(zip: InputType, minecraft: MinecraftLocation, options?: CurseforgeOptions): any;
 /**
  * Install curseforge modpack to a specific Minecraft location.
  *
@@ -2360,15 +2335,15 @@ export declare function installCurseforgeModpack(zip: InputType, minecraft: Mine
  * @param options The options for query curseforge
  * @throws {@link BadCurseforgeModpackError}
  */
-export declare function installCurseforgeModpackTask(input: InputType, minecraft: MinecraftLocation, options?: CurseforgeOptions): import("@xmcl/task").TaskRoutine<Manifest>;
+export declare function installCurseforgeModpackTask(input: InputType, minecraft: MinecraftLocation, options?: CurseforgeOptions): any;
 /**
  * Install a curseforge xml file to a specific locations
  */
-export declare function installCurseforgeFile(file: File, destination: string, options?: InstallFileOptions): Promise<void>;
+export declare function installCurseforgeFile(file: File, destination: string, options?: InstallFileOptions): any;
 /**
  * Install a curseforge xml file to a specific locations
  */
-export declare function installCurseforgeFileTask(file: File, destination: string, options?: InstallFileOptions): import("@xmcl/task").TaskRoutine<void>;
+export declare function installCurseforgeFileTask(file: File, destination: string, options?: InstallFileOptions): any;
 export {};
 \/\/# sourceMappingURL=curseforge.d.ts.map`;
 definitions['@xmcl/installer/diagnose.d.ts'] = `import { Issue, LibraryIssue, MinecraftFolder, MinecraftLocation } from "@xmcl/core"; import { InstallProfile, PostProcessor } from "./profile";
@@ -2724,7 +2699,7 @@ export declare class BadForgeInstallerJarError extends Error {
  * @returns The installed version name.
  * @throws {@link BadForgeInstallerJarError}
  */
-export declare function installForge(version: RequiredVersion, minecraft: MinecraftLocation, options?: InstallForgeOptions): Promise<string>;
+export declare function installForge(version: RequiredVersion, minecraft: MinecraftLocation, options?: InstallForgeOptions): any;
 /**
  * Install forge to target location.
  * Installation task for forge with mcversion >= 1.13 requires java installed on your pc.
@@ -2764,7 +2739,8 @@ export declare function resolveAbortSignal(signal?: AbortSignal): AbortSignal;
 export declare class AbortError extends Error {
 }
 \/\/# sourceMappingURL=abort.d.ts.map`;
-definitions['@xmcl/installer/http/agents.d.ts'] = `\/\// <reference types="node" /> import { Agent as HttpAgent } from "http";
+definitions['@xmcl/installer/http/agents.d.ts'] = `\/\// <reference types="node" /> \/\// <reference types="node" />
+import { Agent as HttpAgent } from "http";
 import { Agent as HttpsAgent } from "https";
 /**
  * The http(s) agents object for requesting
@@ -2937,13 +2913,14 @@ export declare type DownloadFailedReason = "DownloadAborted" | "DownloadValidati
  */
 export declare class DownloadError extends Error {
     readonly error: DownloadFailedReason;
+    readonly url: string;
     readonly metadata: ResourceMetadata | undefined;
     readonly headers: Record<string, any>;
     readonly destination: string;
     readonly retryAttempt: number;
     readonly segments: Segment[];
     readonly segmentErrors: any[];
-    constructor(error: DownloadFailedReason, metadata: ResourceMetadata | undefined, headers: Record<string, any>, destination: string, retryAttempt: number, segments: Segment[], segmentErrors: any[]);
+    constructor(error: DownloadFailedReason, url: string, metadata: ResourceMetadata | undefined, headers: Record<string, any>, destination: string, retryAttempt: number, segments: Segment[], segmentErrors: any[]);
 }
 export declare type NetworkErrorType = "ConnectionReset" | "ConnectionTimeout" | "OperationCancelled" | "ProtocolError";
 export declare function resolveNetworkErrorType(e: any): NetworkErrorType | undefined;
@@ -3056,7 +3033,9 @@ export interface StatusController {
 export declare function createStatusController(): StatusController;
 export declare function resolveStatusController(controller?: StatusController): StatusController;
 \/\/# sourceMappingURL=status.d.ts.map`;
-definitions['@xmcl/installer/http/utils.d.ts'] = `\/\// <reference types="node" /> import { Agent as HttpAgent, ClientRequest, IncomingMessage, RequestOptions } from "http";
+definitions['@xmcl/installer/http/utils.d.ts'] = `\/\// <reference types="node" /> \/\// <reference types="node" />
+\/\// <reference types="node" />
+import { Agent as HttpAgent, ClientRequest, IncomingMessage, RequestOptions } from "http";
 import { AbortSignal } from "./abort";
 import { Agent as HttpsAgent } from "https";
 import { URL } from "url";
@@ -3365,12 +3344,12 @@ interface DownloadInfo {
  * Install JRE from Mojang offical resource. It should install jdk 8.
  * @param options The install options
  */
-export declare function installJreFromMojangTask(options: InstallJavaOptions): import("@xmcl/task").TaskRoutine<void>;
+export declare function installJreFromMojangTask(options: InstallJavaOptions): any;
 /**
  * Install JRE from Mojang offical resource. It should install jdk 8.
  * @param options The install options
  */
-export declare function installJreFromMojang(options: InstallJavaOptions): Promise<void>;
+export declare function installJreFromMojang(options: InstallJavaOptions): any;
 /**
  * Try to resolve a java info at this path. This will call \`java -version\`
  * @param path The java exectuable path.
@@ -3499,7 +3478,7 @@ export declare function getLiteloaderVersionList(option?: {
  * @param version The real existed version id (under the the provided minecraft location) you want to installed liteloader inherit
  * @throws {@link MissingVersionJsonError}
  */
-export declare function installLiteloader(versionMeta: LiteloaderVersion, location: MinecraftLocation, options?: InstallOptions): Promise<string>;
+export declare function installLiteloader(versionMeta: LiteloaderVersion, location: MinecraftLocation, options?: InstallOptions): any;
 /**
  * Install the liteloader to specific minecraft location.
  *
@@ -3764,7 +3743,7 @@ export declare function installResolvedLibrariesTask(libraries: ResolvedLibrary[
  * @param folder The minecraft folder
  * @param options The asset option
  */
-export declare function installResolvedAssetsTask(assets: AssetInfo[], folder: MinecraftFolder, options?: AssetsOptions): import("@xmcl/task").TaskRoutine<void>;
+export declare function installResolvedAssetsTask(assets: AssetInfo[], folder: MinecraftFolder, options?: AssetsOptions): any;
 export declare class InstallJsonTask extends DownloadTask {
     constructor(version: MinecraftVersionBaseInfo, minecraft: MinecraftLocation, options: Options);
 }
@@ -3821,7 +3800,7 @@ export interface InstallOptifineOptions extends InstallOptions, SpawnJavaOptions
  * @beta Might be changed and don't break the major version
  * @throws {@link BadOptifineJarError}
  */
-export declare function installOptifine(installer: string, minecraft: MinecraftLocation, options?: InstallOptifineOptions): Promise<string>;
+export declare function installOptifine(installer: string, minecraft: MinecraftLocation, options?: InstallOptifineOptions): any;
 export declare class BadOptifineJarError extends Error {
     optifine: string;
     /**
@@ -3844,7 +3823,7 @@ export declare class BadOptifineJarError extends Error {
  * @beta Might be changed and don't break the major version
  * @throws {@link BadOptifineJarError}
  */
-export declare function installOptifineTask(installer: string, minecraft: MinecraftLocation, options?: InstallOptifineOptions): import("@xmcl/task").TaskRoutine<string>;
+export declare function installOptifineTask(installer: string, minecraft: MinecraftLocation, options?: InstallOptifineOptions): any;
 \/\/# sourceMappingURL=optifine.d.ts.map`;
 definitions['@xmcl/installer/profile.d.ts'] = `import { MinecraftFolder, MinecraftLocation, Version as VersionJson } from "@xmcl/core"; import { AbortableTask } from "@xmcl/task";
 import { InstallSideOption, LibraryOptions } from "./minecraft";
@@ -3942,7 +3921,7 @@ export declare function resolveProcessors(side: "client" | "server", installProf
  * @param java The java executable path
  * @throws {@link PostProcessError}
  */
-export declare function postProcess(processors: PostProcessor[], minecraft: MinecraftFolder, javaOptions: SpawnJavaOptions): Promise<void>;
+export declare function postProcess(processors: PostProcessor[], minecraft: MinecraftFolder, javaOptions: SpawnJavaOptions): any;
 /**
  * Install by install profile. The install profile usually contains some preprocess should run before installing dependencies.
  *
@@ -3951,7 +3930,7 @@ export declare function postProcess(processors: PostProcessor[], minecraft: Mine
  * @param options The options to install
  * @throws {@link PostProcessError}
  */
-export declare function installByProfile(installProfile: InstallProfile, minecraft: MinecraftLocation, options?: InstallProfileOption): Promise<void>;
+export declare function installByProfile(installProfile: InstallProfile, minecraft: MinecraftLocation, options?: InstallProfileOption): any;
 /**
  * Install by install profile. The install profile usually contains some preprocess should run before installing dependencies.
  *
@@ -3959,7 +3938,7 @@ export declare function installByProfile(installProfile: InstallProfile, minecra
  * @param minecraft The minecraft location
  * @param options The options to install
  */
-export declare function installByProfileTask(installProfile: InstallProfile, minecraft: MinecraftLocation, options?: InstallProfileOption): import("@xmcl/task").TaskRoutine<void>;
+export declare function installByProfileTask(installProfile: InstallProfile, minecraft: MinecraftLocation, options?: InstallProfileOption): any;
 export declare class PostProcessBadJarError extends Error {
     jarPath: string;
     causeBy: Error;
@@ -3992,6 +3971,7 @@ export declare class PostProcessingTask extends AbortableTask<void> {
     readonly name: string;
     private pointer;
     private activeProcess;
+    private currentAbort;
     constructor(processors: PostProcessor[], minecraft: MinecraftFolder, java: SpawnJavaOptions);
     protected findMainClass(lib: string): Promise<string>;
     protected isInvalid(outputs: Required<PostProcessor>["outputs"]): Promise<boolean>;
@@ -4008,7 +3988,7 @@ export interface InstallQuiltVersionOptions {
     minecraft: MinecraftLocation;
     remote?: string;
 }
-export declare function installQuiltVersion(options: InstallQuiltVersionOptions): Promise<string>;
+export declare function installQuiltVersion(options: InstallQuiltVersionOptions): Promise<any>;
 export interface GetQuiltOptions {
     remote?: string;
     cache?: {
@@ -4046,7 +4026,8 @@ export declare class UnzipTask extends BaseTask<void> {
     protected resumeTask(): Promise<void>;
 }
 \/\/# sourceMappingURL=unzip.d.ts.map`;
-definitions['@xmcl/installer/utils.d.ts'] = `\/\// <reference types="node" /> import { _exists as exists, _mkdir as mkdir, _pipeline as pipeline, _readFile as readFile, _writeFile as writeFile } from "@xmcl/core";
+definitions['@xmcl/installer/utils.d.ts'] = `\/\// <reference types="node" /> \/\// <reference types="node" />
+import { _exists as exists, _mkdir as mkdir, _pipeline as pipeline, _readFile as readFile, _writeFile as writeFile } from "@xmcl/core";
 import { ChildProcess, ExecOptions, SpawnOptions } from "child_process";
 import { close as fclose, copyFile as fcopyFile, ftruncate, link as fslink, open as fopen, stat as fstat, unlink as funlink } from "fs";
 export declare const unlink: typeof funlink.__promisify__;
@@ -4058,7 +4039,7 @@ export declare const copyFile: typeof fcopyFile.__promisify__;
 export declare const truncate: typeof ftruncate.__promisify__;
 export { checksum } from "@xmcl/core";
 export { readFile, writeFile, mkdir, exists, pipeline };
-export declare function missing(target: string): Promise<boolean>;
+export declare function missing(target: string): any;
 export declare function ensureDir(target: string): Promise<void>;
 export interface SpawnJavaOptions {
     /**
@@ -4871,7 +4852,6 @@ export interface QuiltLoaderData {
 export declare function readQuiltMod(file: FileSystem | string | Uint8Array): Promise<QuiltModMetadata>;
 \/\/# sourceMappingURL=quilt.d.ts.map`;
 definitions['@xmcl/model/block.d.ts'] = `import { BlockModel, PackMeta } from "@xmcl/resourcepack"; import { Object3D } from "three/src/core/Object3D";
-import { Vector3 } from "three/src/math/Vector3";
 interface Texture {
     url: string;
     animation?: PackMeta.Animation;
@@ -4884,7 +4864,7 @@ export declare class BlockModelObject extends Object3D {
     animationLoop: boolean;
     displayOption: BlockModel.Display;
     applyDisplay(option: string): void;
-    getCenter(): Vector3;
+    getCenter(): any;
 }
 export declare class BlockModelFactory {
     readonly textureRegistry: TextureRegistry;
@@ -4906,7 +4886,8 @@ export declare class BlockModelFactory {
         uvlock?: boolean;
         y?: number;
         x?: number;
-    }): BlockModelObject;
+        waitForTextures?: boolean;
+    }): Promise<BlockModelObject>;
 }
 export {};
 \/\/# sourceMappingURL=block.d.ts.map`;
@@ -5550,16 +5531,13 @@ export declare class WriteContext {
 }
 export {};
 \/\/# sourceMappingURL=index.d.ts.map`;
-definitions['@xmcl/nbt/utils.d.ts'] = `\/\// <reference types="bytebuffer" /> export declare function writeUTF8(out: ByteBuffer, str: string): number;
-export declare function readUTF8(buff: ByteBuffer): string;
-\/\/# sourceMappingURL=utils.d.ts.map`;
-definitions['@xmcl/nbt/zlib/index.browser.d.ts'] = `export declare function gzip(buffer: Uint8Array): Promise<Uint8Array>; export declare function gzipSync(buffer: Uint8Array): Uint8Array;
-export declare function ungzip(buffer: Uint8Array): Promise<Uint8Array>;
-export declare function gunzipSync(buffer: Uint8Array): Uint8Array;
-export declare function inflate(buffer: Uint8Array): Promise<Uint8Array>;
-export declare function deflate(buffer: Uint8Array): Promise<Uint8Array>;
-export declare function inflateSync(buffer: Uint8Array): Uint8Array;
-export declare function deflateSync(buffer: Uint8Array): Uint8Array;
+definitions['@xmcl/nbt/zlib/index.browser.d.ts'] = `export declare function gzip(buffer: Uint8Array): Promise<any>; export declare function gzipSync(buffer: Uint8Array): any;
+export declare function ungzip(buffer: Uint8Array): Promise<any>;
+export declare function gunzipSync(buffer: Uint8Array): any;
+export declare function inflate(buffer: Uint8Array): Promise<any>;
+export declare function deflate(buffer: Uint8Array): Promise<any>;
+export declare function inflateSync(buffer: Uint8Array): any;
+export declare function deflateSync(buffer: Uint8Array): any;
 \/\/# sourceMappingURL=index.browser.d.ts.map`;
 definitions['@xmcl/nbt/zlib/index.d.ts'] = `import { deflateSync, gunzipSync, gzipSync, inflateSync } from "zlib"; export declare const gzip: (buf: Uint8Array) => Promise<Uint8Array>;
 export declare const ungzip: (buf: Uint8Array) => Promise<Uint8Array>;
@@ -6024,7 +6002,7 @@ export declare class ResourcePack {
      * @returns The absolute url like \`file:\/\/\` or \`http:\/\/\` depending on underlaying \`FileSystem\`.
      * @see {@link FileSystem}
      */
-    getUrl(location: ResourceLocation): string;
+    getUrl(location: ResourceLocation): any;
     /**
      * Get the resource on the resource location.
      *
@@ -6433,7 +6411,8 @@ export declare function toFormattedString(comp: TextComponent): string;
  */
 export declare function fromFormattedString(formatted: string): TextComponent;
 \/\/# sourceMappingURL=index.d.ts.map`;
-definitions['@xmcl/unzip/index.d.ts'] = `\/\// <reference types="node" /> /**
+definitions['@xmcl/unzip/index.d.ts'] = `\/\// <reference types="node" /> \/\// <reference types="node" />
+/**
  * @module @xmcl/unzip
  */
 import { Readable } from "stream";
@@ -6546,7 +6525,7 @@ export interface Authentication {
  * Random generate a new token by uuid v4. It can be client or auth token.
  * @returns a new token
  */
-export declare function newToken(): string;
+export declare function newToken(): any;
 export interface AuthException {
     error: "Method Not Allowed" | "Not Not Found" | "ForbiddenOperationException" | "IllegalArgumentException" | "Unsupported Media Type";
     errorMessage: string;
@@ -6693,7 +6672,7 @@ export declare function signout(option: {
  *
  * @param username The username you want to have in-game.
  */
-export declare function offline(username: string): Authentication;
+export declare function offline(username: string, uuid?: string): Authentication;
 export {};
 \/\/# sourceMappingURL=auth.d.ts.map`;
 definitions['@xmcl/user/base.d.ts'] = `/**  * The game profile of the user.
@@ -7139,7 +7118,7 @@ export declare namespace RegionReader {
      * @param section The section
      * @param index The chunk index
      */
-    function seekBlockStateId(section: NewRegionSectionDataFrame | LegacyRegionSectionDataFrame, index: ChunkIndex): number;
+    function seekBlockStateId(section: NewRegionSectionDataFrame | LegacyRegionSectionDataFrame, index: ChunkIndex): any;
     /**
      * Seek the block state data from new region format.
      * @param section The new region section
@@ -7560,6 +7539,10 @@ definitions['assert.d.ts'] = `declare module 'assert' {     /** An alias of \`as
 
     export = assert;
 }
+declare module 'node:assert' {
+    import assert = require('assert');
+    export = assert;
+}
 `;
 definitions['async_hooks.d.ts'] = `/**  * Async Hooks module: https:\/\/nodejs.org/api/async_hooks.html
  */
@@ -7673,7 +7656,7 @@ declare module 'async_hooks' {
          * @param type The type of async event.
          * @param triggerAsyncId The ID of the execution context that created
          *   this async event (default: \`executionAsyncId()\`), or an
-         *   AsyncResourceOptions object (since 9.3)
+         *   AsyncResourceOptions object (since v9.3.0)
          */
         constructor(type: string, triggerAsyncId?: number|AsyncResourceOptions);
 
@@ -7786,8 +7769,12 @@ declare module 'async_hooks' {
         enterWith(store: T): void;
     }
 }
+declare module 'node:async_hooks' {
+    export * from 'async_hooks';
+}
 `;
-definitions['buffer.d.ts'] = `declare module 'buffer' {     export const INSPECT_MAX_BYTES: number;
+definitions['buffer.d.ts'] = `declare module 'buffer' {     import { BinaryLike } from 'node:crypto';
+    export const INSPECT_MAX_BYTES: number;
     export const kMaxLength: number;
     export const kStringMaxLength: number;
     export const constants: {
@@ -7805,8 +7792,74 @@ definitions['buffer.d.ts'] = `declare module 'buffer' {     export const INSPECT
         new(size: number): Buffer;
         prototype: Buffer;
     };
+    /**
+     * @experimental
+     */
+    export interface BlobOptions {
+        /**
+         * @default 'utf8'
+         */
+        encoding?: BufferEncoding | undefined;
+        /**
+         * The Blob content-type. The intent is for \`type\` to convey
+         * the MIME media type of the data, however no validation of the type format
+         * is performed.
+         */
+        type?: string | undefined;
+    }
+    /**
+     * A [\`Blob\`](https:\/\/developer.mozilla.org/en-US/docs/Web/API/Blob) encapsulates immutable, raw data that can be safely shared across
+     * multiple worker threads.
+     * @since v14.18.0
+     * @experimental
+     */
+    export class Blob {
+        /**
+         * The total size of the \`Blob\` in bytes.
+         * @since v14.18.0
+         */
+        readonly size: number;
+        /**
+         * The content-type of the \`Blob\`.
+         * @since v14.18.0
+         */
+        readonly type: string;
+        /**
+         * Creates a new \`Blob\` object containing a concatenation of the given sources.
+         *
+         * {ArrayBuffer}, {TypedArray}, {DataView}, and {Buffer} sources are copied into
+         * the 'Blob' and can therefore be safely modified after the 'Blob' is created.
+         *
+         * String sources are also copied into the \`Blob\`.
+         */
+        constructor(sources: Array<BinaryLike | Blob>, options?: BlobOptions);
+        /**
+         * Returns a promise that fulfills with an [ArrayBuffer](https:\/\/developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/ArrayBuffer) containing a copy of
+         * the \`Blob\` data.
+         * @since v14.18.0
+         */
+        arrayBuffer(): Promise<ArrayBuffer>;
+        /**
+         * Creates and returns a new \`Blob\` containing a subset of this \`Blob\` objects
+         * data. The original \`Blob\` is not altered.
+         * @since v14.18.0
+         * @param start The starting index.
+         * @param end The ending index.
+         * @param type The content-type for the new \`Blob\`
+         */
+        slice(start?: number, end?: number, type?: string): Blob;
+        /**
+         * Returns a promise that fulfills with the contents of the \`Blob\` decoded as a
+         * UTF-8 string.
+         * @since v14.18.0
+         */
+        text(): Promise<string>;
+    }
 
     export { BuffType as Buffer };
+}
+declare module 'node:buffer' {
+    export * from 'buffer';
 }
 `;
 definitions['child_process.d.ts'] = `declare module 'child_process' {     import { BaseEncodingOptions } from 'fs';
@@ -8319,6 +8372,9 @@ definitions['child_process.d.ts'] = `declare module 'child_process' {     import
     function execFileSync(command: string, args: ReadonlyArray<string>, options: ExecFileSyncOptionsWithBufferEncoding): Buffer;
     function execFileSync(command: string, args?: ReadonlyArray<string>, options?: ExecFileSyncOptions): string | Buffer;
 }
+declare module 'node:child_process' {
+    export * from 'child_process';
+}
 `;
 definitions['cluster.d.ts'] = `declare module 'cluster' {     import * as child from 'child_process';
     import EventEmitter = require('events');
@@ -8581,8 +8637,15 @@ definitions['cluster.d.ts'] = `declare module 'cluster' {     import * as child 
 
     function eventNames(): string[];
 }
+declare module 'node:cluster' {
+    export * from 'cluster';
+}
 `;
-definitions['console.d.ts'] = `declare module 'console' {     import { InspectOptions } from 'util';
+definitions['console.d.ts'] = `declare module 'console' {     import console = require('node:console');
+    export = console;
+}
+declare module 'node:console' {
+    import { InspectOptions } from 'util';
 
     global {
         \/\/ This needs to be global to avoid TS2403 in case lib.dom.d.ts is present in the same build
@@ -8731,6 +8794,11 @@ definitions['constants.d.ts'] = `/** @deprecated since v6.3.0 - use constants pr
         typeof cryptoConstants &
         typeof fsConstants;
     export = exp;
+}
+
+declare module 'node:constants' {
+    import constants = require('constants');
+    export = constants;
 }
 `;
 definitions['crypto.d.ts'] = `declare module 'crypto' {     import * as stream from 'stream';
@@ -8923,6 +8991,7 @@ definitions['crypto.d.ts'] = `declare module 'crypto' {     import * as stream f
 
     type CipherCCMTypes = 'aes-128-ccm' | 'aes-192-ccm' | 'aes-256-ccm' | 'chacha20-poly1305';
     type CipherGCMTypes = 'aes-128-gcm' | 'aes-192-gcm' | 'aes-256-gcm';
+    type CipherOCBTypes = 'aes-128-ocb' | 'aes-192-ocb' | 'aes-256-ocb';
 
     type BinaryLike = string | NodeJS.ArrayBufferView;
 
@@ -8934,6 +9003,9 @@ definitions['crypto.d.ts'] = `declare module 'crypto' {     import * as stream f
     interface CipherGCMOptions extends stream.TransformOptions {
         authTagLength?: number | undefined;
     }
+    interface CipherOCBOptions extends stream.TransformOptions {
+        authTagLength: number;
+    }
     /** @deprecated since v10.0.0 use \`createCipheriv()\` */
     function createCipher(algorithm: CipherCCMTypes, password: BinaryLike, options: CipherCCMOptions): CipherCCM;
     /** @deprecated since v10.0.0 use \`createCipheriv()\` */
@@ -8944,13 +9016,19 @@ definitions['crypto.d.ts'] = `declare module 'crypto' {     import * as stream f
     function createCipheriv(
         algorithm: CipherCCMTypes,
         key: CipherKey,
-        iv: BinaryLike | null,
+        iv: BinaryLike,
         options: CipherCCMOptions,
     ): CipherCCM;
     function createCipheriv(
+        algorithm: CipherOCBTypes,
+        key: CipherKey,
+        iv: BinaryLike,
+        options: CipherOCBOptions,
+    ): CipherOCB;
+    function createCipheriv(
         algorithm: CipherGCMTypes,
         key: CipherKey,
-        iv: BinaryLike | null,
+        iv: BinaryLike,
         options?: CipherGCMOptions,
     ): CipherGCM;
     function createCipheriv(
@@ -8980,6 +9058,10 @@ definitions['crypto.d.ts'] = `declare module 'crypto' {     import * as stream f
         setAAD(buffer: NodeJS.ArrayBufferView, options?: { plaintextLength: number }): this;
         getAuthTag(): Buffer;
     }
+    interface CipherOCB extends Cipher {
+        setAAD(buffer: NodeJS.ArrayBufferView, options?: { plaintextLength: number }): this;
+        getAuthTag(): Buffer;
+    }
     /** @deprecated since v10.0.0 use \`createDecipheriv()\` */
     function createDecipher(algorithm: CipherCCMTypes, password: BinaryLike, options: CipherCCMOptions): DecipherCCM;
     /** @deprecated since v10.0.0 use \`createDecipheriv()\` */
@@ -8990,13 +9072,19 @@ definitions['crypto.d.ts'] = `declare module 'crypto' {     import * as stream f
     function createDecipheriv(
         algorithm: CipherCCMTypes,
         key: CipherKey,
-        iv: BinaryLike | null,
+        iv: BinaryLike,
         options: CipherCCMOptions,
     ): DecipherCCM;
     function createDecipheriv(
+        algorithm: CipherOCBTypes,
+        key: CipherKey,
+        iv: BinaryLike,
+        options: CipherOCBOptions,
+    ): DecipherOCB;
+    function createDecipheriv(
         algorithm: CipherGCMTypes,
         key: CipherKey,
-        iv: BinaryLike | null,
+        iv: BinaryLike,
         options?: CipherGCMOptions,
     ): DecipherGCM;
     function createDecipheriv(
@@ -9023,6 +9111,10 @@ definitions['crypto.d.ts'] = `declare module 'crypto' {     import * as stream f
         setAAD(buffer: NodeJS.ArrayBufferView, options: { plaintextLength: number }): this;
     }
     interface DecipherGCM extends Decipher {
+        setAuthTag(buffer: NodeJS.ArrayBufferView): this;
+        setAAD(buffer: NodeJS.ArrayBufferView, options?: { plaintextLength: number }): this;
+    }
+    interface DecipherOCB extends Decipher {
         setAuthTag(buffer: NodeJS.ArrayBufferView): this;
         setAAD(buffer: NodeJS.ArrayBufferView, options?: { plaintextLength: number }): this;
     }
@@ -9116,9 +9208,9 @@ definitions['crypto.d.ts'] = `declare module 'crypto' {     import * as stream f
         private constructor();
         generateKeys(): Buffer;
         generateKeys(encoding: BinaryToTextEncoding): string;
-        computeSecret(other_public_key: NodeJS.ArrayBufferView): Buffer;
-        computeSecret(other_public_key: string, input_encoding: BinaryToTextEncoding): Buffer;
-        computeSecret(other_public_key: NodeJS.ArrayBufferView, output_encoding: BinaryToTextEncoding): string;
+        computeSecret(otherPublicKey: NodeJS.ArrayBufferView, inputEncoding?: null, outputEncoding?: null): Buffer;
+        computeSecret(otherPublicKey: string, inputEncoding: BinaryToTextEncoding, outputEncoding?: null): Buffer;
+        computeSecret(otherPublicKey: NodeJS.ArrayBufferView, inputEncoding: null, outputEncoding: BinaryToTextEncoding): string;
         computeSecret(
             other_public_key: string,
             input_encoding: BinaryToTextEncoding,
@@ -9138,7 +9230,42 @@ definitions['crypto.d.ts'] = `declare module 'crypto' {     import * as stream f
         setPrivateKey(private_key: string, encoding: BufferEncoding): void;
         verifyError: number;
     }
-    function getDiffieHellman(group_name: string): DiffieHellman;
+    /**
+     * The \`DiffieHellmanGroup\` class takes a well-known modp group as its argument.
+     * It works the same as \`DiffieHellman\`, except that it does not allow changing its keys after creation.
+     * In other words, it does not implement \`setPublicKey()\` or \`setPrivateKey()\` methods.
+     *
+     * \`\`\`js
+     * const { createDiffieHellmanGroup } = await import('node:crypto');
+     * const dh = createDiffieHellmanGroup('modp1');
+     * \`\`\`
+     * The name (e.g. \`'modp1'\`) is taken from [RFC 2412](https:\/\/www.rfc-editor.org/rfc/rfc2412.txt) (modp1 and 2) and [RFC 3526](https:\/\/www.rfc-editor.org/rfc/rfc3526.txt):
+     * \`\`\`bash
+     * \$ perl -ne 'print "\$1\n" if /"(modp\d+)"/' src/node_crypto_groups.h
+     * modp1  #  768 bits
+     * modp2  # 1024 bits
+     * modp5  # 1536 bits
+     * modp14 # 2048 bits
+     * modp15 # etc.
+     * modp16
+     * modp17
+     * modp18
+     * \`\`\`
+     * @since v0.7.5
+     */
+    const DiffieHellmanGroup: DiffieHellmanGroupConstructor;
+    interface DiffieHellmanGroupConstructor {
+        new(name: string): DiffieHellmanGroup;
+        (name: string): DiffieHellmanGroup;
+        readonly prototype: DiffieHellmanGroup;
+    }
+    type DiffieHellmanGroup = Omit<DiffieHellman, 'setPublicKey' | 'setPrivateKey'>;
+    function getDiffieHellman(groupName: string): DiffieHellmanGroup;
+    /**
+     * An alias for {@link getDiffieHellman}
+     * @since v0.9.3
+     */
+    function createDiffieHellmanGroup(name: string): DiffieHellmanGroup;
     function pbkdf2(
         password: BinaryLike,
         salt: BinaryLike,
@@ -9241,6 +9368,12 @@ definitions['crypto.d.ts'] = `declare module 'crypto' {     import * as stream f
     function getCiphers(): string[];
     function getCurves(): string[];
     function getFips(): 1 | 0;
+    /**
+     * Enables the FIPS compliant crypto provider in a FIPS-enabled Node.js build. Throws an error if FIPS mode is not available.
+     * @since v10.0.0
+     * @param bool \`true\` to enable FIPS mode.
+     */
+    function setFips(bool: boolean): void;
     function getHashes(): string[];
     class ECDH {
         private constructor();
@@ -9917,6 +10050,38 @@ definitions['crypto.d.ts'] = `declare module 'crypto' {     import * as stream f
      * 'dh' (for Diffie-Hellman), 'ec' (for ECDH), 'x448', or 'x25519' (for ECDH-ES).
      */
     function diffieHellman(options: { privateKey: KeyObject; publicKey: KeyObject }): Buffer;
+    /**
+     * Load and set the \`engine\` for some or all OpenSSL functions (selected by flags).
+     *
+     * \`engine\` could be either an id or a path to the engine's shared library.
+     *
+     * The optional \`flags\` argument uses \`ENGINE_METHOD_ALL\` by default.
+     * The \`flags\` is a bit field taking one of or a mix of the following flags (defined in \`crypto.constants\`):
+     *
+     * - \`crypto.constants.ENGINE_METHOD_RSA\`
+     * - \`crypto.constants.ENGINE_METHOD_DSA\`
+     * - \`crypto.constants.ENGINE_METHOD_DH\`
+     * - \`crypto.constants.ENGINE_METHOD_RAND\`
+     * - \`crypto.constants.ENGINE_METHOD_EC\`
+     * - \`crypto.constants.ENGINE_METHOD_CIPHERS\`
+     * - \`crypto.constants.ENGINE_METHOD_DIGESTS\`
+     * - \`crypto.constants.ENGINE_METHOD_PKEY_METHS\`
+     * - \`crypto.constants.ENGINE_METHOD_PKEY_ASN1_METHS\`
+     * - \`crypto.constants.ENGINE_METHOD_ALL\`
+     * - \`crypto.constants.ENGINE_METHOD_NONE\`
+     *
+     * The flags below are deprecated in OpenSSL-1.1.0.
+     *
+     * - \`crypto.constants.ENGINE_METHOD_ECDH\`
+     * - \`crypto.constants.ENGINE_METHOD_ECDSA\`
+     * - \`crypto.constants.ENGINE_METHOD_STORE\`
+     * @since v0.11.11
+     * @param [flags=crypto.constants.ENGINE_METHOD_ALL]
+     */
+    function setEngine(engine: string, flags?: number): void;
+}
+declare module 'node:crypto' {
+    export * from 'crypto';
 }
 `;
 definitions['dgram.d.ts'] = `declare module 'dgram' {     import { AddressInfo } from 'net';
@@ -9957,11 +10122,11 @@ definitions['dgram.d.ts'] = `declare module 'dgram' {     import { AddressInfo }
     class Socket extends EventEmitter {
         addMembership(multicastAddress: string, multicastInterface?: string): void;
         address(): AddressInfo;
-        bind(port?: number, address?: string, callback?: () => void): void;
-        bind(port?: number, callback?: () => void): void;
-        bind(callback?: () => void): void;
-        bind(options: BindOptions, callback?: () => void): void;
-        close(callback?: () => void): void;
+        bind(port?: number, address?: string, callback?: () => void): this;
+        bind(port?: number, callback?: () => void): this;
+        bind(callback?: () => void): this;
+        bind(options: BindOptions, callback?: () => void): this;
+        close(callback?: () => void): this;
         connect(port: number, address?: string, callback?: () => void): void;
         connect(port: number, callback: () => void): void;
         disconnect(): void;
@@ -9978,11 +10143,11 @@ definitions['dgram.d.ts'] = `declare module 'dgram' {     import { AddressInfo }
         send(msg: string | Uint8Array, offset: number, length: number, callback?: (error: Error | null, bytes: number) => void): void;
         setBroadcast(flag: boolean): void;
         setMulticastInterface(multicastInterface: string): void;
-        setMulticastLoopback(flag: boolean): void;
-        setMulticastTTL(ttl: number): void;
+        setMulticastLoopback(flag: boolean): boolean;
+        setMulticastTTL(ttl: number): number;
         setRecvBufferSize(size: number): void;
         setSendBufferSize(size: number): void;
-        setTTL(ttl: number): void;
+        setTTL(ttl: number): number;
         unref(): this;
         /**
          * Tells the kernel to join a source-specific multicast channel at the given
@@ -10058,6 +10223,9 @@ definitions['dgram.d.ts'] = `declare module 'dgram' {     import { AddressInfo }
         prependOnceListener(event: "listening", listener: () => void): this;
         prependOnceListener(event: "message", listener: (msg: Buffer, rinfo: RemoteInfo) => void): this;
     }
+}
+declare module 'node:dgram' {
+    export * from 'dgram';
 }
 `;
 definitions['dns.d.ts'] = `declare module 'dns' {     \/\/ Supported getaddrinfo flags.
@@ -10311,6 +10479,8 @@ definitions['dns.d.ts'] = `declare module 'dns' {     \/\/ Supported getaddrinfo
     function setServers(servers: ReadonlyArray<string>): void;
     function getServers(): string[];
 
+    function setDefaultResultOrder(order: 'ipv4first' | 'verbatim'): void;
+
     \/\/ Error codes
     const NODATA: string;
     const FORMERR: string;
@@ -10417,6 +10587,8 @@ definitions['dns.d.ts'] = `declare module 'dns' {     \/\/ Supported getaddrinfo
 
         function setServers(servers: ReadonlyArray<string>): void;
 
+        function setDefaultResultOrder(order: 'ipv4first' | 'verbatim'): void;
+
         class Resolver {
             constructor(options?: ResolverOptions);
             cancel(): void;
@@ -10438,6 +10610,9 @@ definitions['dns.d.ts'] = `declare module 'dns' {     \/\/ Supported getaddrinfo
             setServers: typeof setServers;
         }
     }
+}
+declare module 'node:dns' {
+    export * from 'dns';
 }
 `;
 definitions['domain.d.ts'] = `declare module 'domain' {     import EventEmitter = require('events');
@@ -10462,6 +10637,9 @@ definitions['domain.d.ts'] = `declare module 'domain' {     import EventEmitter 
     }
 
     function create(): Domain;
+}
+declare module 'node:domain' {
+    export * from 'domain';
 }
 `;
 definitions['events.d.ts'] = `declare module 'events' {     interface EventEmitterOptions {
@@ -10540,6 +10718,10 @@ definitions['events.d.ts'] = `declare module 'events' {     interface EventEmitt
     }
 
     export = EventEmitter;
+}
+declare module 'node:events' {
+    import events = require('events');
+    export = events;
 }
 `;
 definitions['fs.d.ts'] = `declare module 'fs' {     import * as stream from 'stream';
@@ -10686,7 +10868,7 @@ definitions['fs.d.ts'] = `declare module 'fs' {     import * as stream from 'str
     }
 
     export class ReadStream extends stream.Readable {
-        close(): void;
+        close(callback?: (err?: NodeJS.ErrnoException | null) => void): void;
         bytesRead: number;
         path: string | Buffer;
         pending: boolean;
@@ -10754,7 +10936,7 @@ definitions['fs.d.ts'] = `declare module 'fs' {     import * as stream from 'str
     }
 
     export class WriteStream extends stream.Writable {
-        close(): void;
+        close(callback?: (err?: NodeJS.ErrnoException | null) => void): void;
         bytesWritten: number;
         path: string | Buffer;
         pending: boolean;
@@ -11807,15 +11989,23 @@ definitions['fs.d.ts'] = `declare module 'fs' {     import * as stream from 'str
     /**
      * Asynchronous open(2) - open and possibly create a file.
      * @param path A path to a file. If a URL is provided, it must use the \`file:\` protocol.
-     * @param mode A file mode. If a string is passed, it is parsed as an octal integer. If not supplied, defaults to \`0o666\`.
+     * @param [flags='r'] See \`support of file system \`flags\`\`.
+     * @param [mode=0o666]
      */
-    export function open(path: PathLike, flags: OpenMode, mode: Mode | undefined | null, callback: (err: NodeJS.ErrnoException | null, fd: number) => void): void;
+    export function open(path: PathLike, flags: OpenMode | undefined, mode: Mode | undefined | null, callback: (err: NodeJS.ErrnoException | null, fd: number) => void): void;
+
+    /**
+     * Asynchronous open(2) - open and possibly create a file. If the file is created, its mode will be \`0o666\`.
+     * @param path A path to a file. If a URL is provided, it must use the \`file:\` protocol.
+     * @param [flags='r'] See \`support of file system \`flags\`\`.
+     */
+    export function open(path: PathLike, flags: OpenMode | undefined, callback: (err: NodeJS.ErrnoException | null, fd: number) => void): void;
 
     /**
      * Asynchronous open(2) - open and possibly create a file. If the file is created, its mode will be \`0o666\`.
      * @param path A path to a file. If a URL is provided, it must use the \`file:\` protocol.
      */
-    export function open(path: PathLike, flags: OpenMode, callback: (err: NodeJS.ErrnoException | null, fd: number) => void): void;
+    export function open(path: PathLike, callback: (err: NodeJS.ErrnoException | null, fd: number) => void): void;
 
     \/\/ NOTE: This namespace provides design-time support for util.promisify. Exported members do not exist at runtime.
     export namespace open {
@@ -12784,13 +12974,13 @@ definitions['fs.d.ts'] = `declare module 'fs' {     import * as stream from 'str
         bufferSize?: number | undefined;
     }
 
-    export function opendirSync(path: string, options?: OpenDirOptions): Dir;
+    export function opendirSync(path: PathLike, options?: OpenDirOptions): Dir;
 
-    export function opendir(path: string, cb: (err: NodeJS.ErrnoException | null, dir: Dir) => void): void;
-    export function opendir(path: string, options: OpenDirOptions, cb: (err: NodeJS.ErrnoException | null, dir: Dir) => void): void;
+    export function opendir(path: PathLike, cb: (err: NodeJS.ErrnoException | null, dir: Dir) => void): void;
+    export function opendir(path: PathLike, options: OpenDirOptions, cb: (err: NodeJS.ErrnoException | null, dir: Dir) => void): void;
 
     export namespace opendir {
-        function __promisify__(path: string, options?: OpenDirOptions): Promise<Dir>;
+        function __promisify__(path: PathLike, options?: OpenDirOptions): Promise<Dir>;
     }
 
     export interface BigIntStats extends StatsBase<bigint> {
@@ -12810,6 +13000,9 @@ definitions['fs.d.ts'] = `declare module 'fs' {     import * as stream from 'str
     export interface StatOptions {
         bigint?: boolean | undefined;
     }
+}
+declare module 'node:fs' {
+    export * from 'fs';
 }
 `;
 definitions['globals.d.ts'] = `\/\/ Declare "static" methods in Error interface ErrorConstructor {
@@ -12865,15 +13058,15 @@ declare namespace setTimeout {
     function __promisify__(ms: number): Promise<void>;
     function __promisify__<T>(ms: number, value: T): Promise<T>;
 }
-declare function clearTimeout(timeoutId: NodeJS.Timeout): void;
+declare function clearTimeout(timeoutId: NodeJS.Timeout | string | number | undefined): void;
 declare function setInterval(callback: (...args: any[]) => void, ms?: number, ...args: any[]): NodeJS.Timeout;
-declare function clearInterval(intervalId: NodeJS.Timeout): void;
+declare function clearInterval(intervalId: NodeJS.Timeout | string | number | undefined): void;
 declare function setImmediate(callback: (...args: any[]) => void, ...args: any[]): NodeJS.Immediate;
 declare namespace setImmediate {
     function __promisify__(): Promise<void>;
     function __promisify__<T>(value: T): Promise<T>;
 }
-declare function clearImmediate(immediateId: NodeJS.Immediate): void;
+declare function clearImmediate(immediateId: NodeJS.Immediate | undefined): void;
 
 declare function queueMicrotask(callback: () => void): void;
 
@@ -12887,6 +13080,49 @@ declare var exports: any;
 type BufferEncoding = "ascii" | "utf8" | "utf-8" | "utf16le" | "ucs2" | "ucs-2" | "base64" | "base64url" | "latin1" | "binary" | "hex";
 
 type WithImplicitCoercion<T> = T | { valueOf(): T };
+
+\/\/#region borrowed
+\/\/ from https:\/\/github.com/microsoft/TypeScript/blob/38da7c600c83e7b31193a62495239a0fe478cb67/lib/lib.webworker.d.ts#L633 until moved to separate lib
+/**
+ * A controller object that allows you to abort one or more DOM requests as and when desired.
+ * @since v14.7.0
+ */
+interface AbortController {
+    /**
+     * Returns the AbortSignal object associated with this object.
+     * @since v14.7.0
+     */
+    readonly signal: AbortSignal;
+    /**
+     * Invoking this method will set this object's AbortSignal's aborted flag and signal to any observers that the associated activity is to be aborted.
+     * @since v14.7.0
+     */
+    abort(): void;
+}
+
+/**
+ * A signal object that allows you to communicate with a DOM request (such as a Fetch) and abort it if required via an AbortController object.
+ * @since v14.7.0
+ */
+interface AbortSignal {
+    /**
+     * Returns true if this AbortSignal's AbortController has signaled to abort, and false otherwise.
+     * @since v14.7.0
+     */
+    readonly aborted: boolean;
+}
+
+declare var AbortController: {
+    prototype: AbortController;
+    new(): AbortController;
+};
+
+declare var AbortSignal: {
+    prototype: AbortSignal;
+    new(): AbortSignal;
+    \/\/ TODO: Add abort() static
+};
+\/\/#endregion borrowed
 
 /**
  * Raw data is stored in instances of the Buffer class.
@@ -13068,24 +13304,89 @@ declare class Buffer extends Uint8Array {
     writeBigInt64BE(value: bigint, offset?: number): number;
     writeBigInt64LE(value: bigint, offset?: number): number;
     writeBigUInt64BE(value: bigint, offset?: number): number;
+    /**
+     * @alias Buffer.writeBigUInt64BE
+     * @since v14.10.0, v12.19.0
+     */
+    writeBigUint64BE(value: bigint, offset?: number): number;
     writeBigUInt64LE(value: bigint, offset?: number): number;
+    /**
+     * @alias Buffer.writeBigUInt64LE
+     * @since v14.10.0, v12.19.0
+     */
+    writeBigUint64LE(value: bigint, offset?: number): number;
     writeUIntLE(value: number, offset: number, byteLength: number): number;
+    /**
+     * @alias Buffer.writeUIntLE
+     * @since v14.9.0, v12.19.0
+     */
+    writeUintLE(value: number, offset: number, byteLength: number): number;
     writeUIntBE(value: number, offset: number, byteLength: number): number;
+    /**
+     * @alias Buffer.writeUIntBE
+     * @since v14.9.0, v12.19.0
+     */
+    writeUintBE(value: number, offset: number, byteLength: number): number;
     writeIntLE(value: number, offset: number, byteLength: number): number;
     writeIntBE(value: number, offset: number, byteLength: number): number;
     readBigUInt64BE(offset?: number): bigint;
+    /**
+     * @alias Buffer.readBigUInt64BE
+     * @since v14.10.0, v12.19.0
+     */
+    readBigUint64BE(offset?: number): bigint;
     readBigUInt64LE(offset?: number): bigint;
+    /**
+     * @alias Buffer.readBigUInt64LE
+     * @since v14.10.0, v12.19.0
+     */
+    readBigUint64LE(offset?: number): bigint;
     readBigInt64BE(offset?: number): bigint;
     readBigInt64LE(offset?: number): bigint;
     readUIntLE(offset: number, byteLength: number): number;
+    /**
+     * @alias Buffer.readUIntLE
+     * @since v14.9.0, v12.19.0
+     */
+    readUintLE(offset: number, byteLength: number): number;
     readUIntBE(offset: number, byteLength: number): number;
+    /**
+     * @alias Buffer.readUIntBE
+     * @since v14.9.0, v12.19.0
+     */
+    readUintBE(offset: number, byteLength: number): number;
     readIntLE(offset: number, byteLength: number): number;
     readIntBE(offset: number, byteLength: number): number;
     readUInt8(offset?: number): number;
+    /**
+     * @alias Buffer.readUInt8
+     * @since v14.9.0, v12.19.0
+     */
+    readUint8(offset?: number): number;
     readUInt16LE(offset?: number): number;
+    /**
+     * @alias Buffer.readUInt16LE
+     * @since v14.9.0, v12.19.0
+     */
+    readUint16LE(offset?: number): number;
     readUInt16BE(offset?: number): number;
+    /**
+     * @alias Buffer.readUInt16BE
+     * @since v14.9.0, v12.19.0
+     */
+    readUint16BE(offset?: number): number;
     readUInt32LE(offset?: number): number;
+    /**
+     * @alias Buffer.readUInt32LE
+     * @since v14.9.0, v12.19.0
+     */
+    readUint32LE(offset?: number): number;
     readUInt32BE(offset?: number): number;
+    /**
+     * @alias Buffer.readUInt32BE
+     * @since v14.9.0, v12.19.0
+     */
+    readUint32BE(offset?: number): number;
     readInt8(offset?: number): number;
     readInt16LE(offset?: number): number;
     readInt16BE(offset?: number): number;
@@ -13100,10 +13401,35 @@ declare class Buffer extends Uint8Array {
     swap32(): Buffer;
     swap64(): Buffer;
     writeUInt8(value: number, offset?: number): number;
+    /**
+     * @alias Buffer.writeUInt8
+     * @since v14.9.0, v12.19.0
+     */
+    writeUint8(value: number, offset?: number): number;
     writeUInt16LE(value: number, offset?: number): number;
+    /**
+     * @alias Buffer.writeUInt16LE
+     * @since v14.9.0, v12.19.0
+     */
+    writeUint16LE(value: number, offset?: number): number;
     writeUInt16BE(value: number, offset?: number): number;
+    /**
+     * @alias Buffer.writeUInt16BE
+     * @since v14.9.0, v12.19.0
+     */
+    writeUint16BE(value: number, offset?: number): number;
     writeUInt32LE(value: number, offset?: number): number;
+    /**
+     * @alias Buffer.writeUInt32LE
+     * @since v14.9.0, v12.19.0
+     */
+    writeUint32LE(value: number, offset?: number): number;
     writeUInt32BE(value: number, offset?: number): number;
+    /**
+     * @alias Buffer.writeUInt32BE
+     * @since v14.9.0, v12.19.0
+     */
+    writeUint32BE(value: number, offset?: number): number;
     writeInt8(value: number, offset?: number): number;
     writeInt16LE(value: number, offset?: number): number;
     writeInt16BE(value: number, offset?: number): number;
@@ -13270,9 +13596,9 @@ declare namespace NodeJS {
         writable: boolean;
         write(buffer: Uint8Array | string, cb?: (err?: Error | null) => void): boolean;
         write(str: string, encoding?: BufferEncoding, cb?: (err?: Error | null) => void): boolean;
-        end(cb?: () => void): void;
-        end(data: string | Uint8Array, cb?: () => void): void;
-        end(str: string, encoding?: BufferEncoding, cb?: () => void): void;
+        end(cb?: () => void): this;
+        end(data: string | Uint8Array, cb?: () => void): this;
+        end(str: string, encoding?: BufferEncoding, cb?: () => void): this;
     }
 
     interface ReadWriteStream extends ReadableStream, WritableStream { }
@@ -13404,11 +13730,11 @@ declare namespace NodeJS {
         id: string;
         filename: string;
         loaded: boolean;
-        /** @deprecated since 14.6.0 Please use \`require.main\` and \`module.children\` instead. */
+        /** @deprecated since v14.6.0 Please use \`require.main\` and \`module.children\` instead. */
         parent: Module | null | undefined;
         children: Module[];
         /**
-         * @since 11.14.0
+         * @since v11.14.0
          *
          * The directory name of the module. This is usually the same as the path.dirname() of the module.id.
          */
@@ -13428,7 +13754,7 @@ declare namespace NodeJS {
 definitions['globals.global.d.ts'] = `declare var global: NodeJS.Global & typeof globalThis; `;
 definitions['http.d.ts'] = `declare module 'http' {     import * as stream from 'stream';
     import { URL } from 'url';
-    import { Socket, Server as NetServer } from 'net';
+    import { Socket, Server as NetServer, LookupFunction } from 'net';
 
     \/\/ incoming headers will never contain number
     interface IncomingHttpHeaders extends NodeJS.Dict<string | string[]> {
@@ -13526,6 +13852,7 @@ definitions['http.d.ts'] = `declare module 'http' {     import * as stream from 
         setHost?: boolean | undefined;
         \/\/ https:\/\/github.com/nodejs/node/blob/master/lib/_http_client.js#L278
         createConnection?: ((options: ClientRequestArgs, oncreate: (err: Error, socket: Socket) => void) => Socket) | undefined;
+        lookup?: LookupFunction | undefined;
     }
 
     interface ServerOptions {
@@ -13663,7 +13990,7 @@ definitions['http.d.ts'] = `declare module 'http' {     import * as stream from 
         constructor();
 
         setTimeout(msecs: number, callback?: () => void): this;
-        setHeader(name: string, value: number | string | ReadonlyArray<string>): void;
+        setHeader(name: string, value: number | string | ReadonlyArray<string>): this;
         getHeader(name: string): number | string | string[] | undefined;
         getHeaders(): OutgoingHttpHeaders;
         getHeaderNames(): string[];
@@ -13705,6 +14032,8 @@ definitions['http.d.ts'] = `declare module 'http' {     import * as stream from 
         aborted: boolean;
         host: string;
         protocol: string;
+        reusedSocket: boolean;
+        maxHeadersCount: number;
 
         constructor(url: string | URL | ClientRequestArgs, cb?: (res: IncomingMessage) => void);
 
@@ -13832,7 +14161,7 @@ definitions['http.d.ts'] = `declare module 'http' {     import * as stream from 
          * Only valid for response obtained from http.ClientRequest.
          */
         statusMessage?: string | undefined;
-        destroy(error?: Error): void;
+        destroy(error?: Error): this;
     }
 
     interface AgentOptions {
@@ -13910,6 +14239,9 @@ definitions['http.d.ts'] = `declare module 'http' {     import * as stream from 
      * Defaults to 16KB. Configurable using the [\`--max-http-header-size\`][] CLI option.
      */
     const maxHeaderSize: number;
+}
+declare module 'node:http' {
+    export * from 'http';
 }
 `;
 definitions['http2.d.ts'] = `declare module 'http2' {     import EventEmitter = require('events');
@@ -14165,6 +14497,7 @@ definitions['http2.d.ts'] = `declare module 'http2' {     import EventEmitter = 
         parent?: number | undefined;
         weight?: number | undefined;
         waitForTrailers?: boolean | undefined;
+        signal?: AbortSignal | undefined;
     }
 
     export interface SessionState {
@@ -14507,7 +14840,7 @@ definitions['http2.d.ts'] = `declare module 'http2' {     import EventEmitter = 
         readonly socket: net.Socket | tls.TLSSocket;
         readonly stream: ServerHttp2Stream;
         readonly trailers: IncomingHttpHeaders;
-        readonly url: string;
+        url: string;
 
         setTimeout(msecs: number, callback?: () => void): void;
         read(size?: number): Buffer | string | null;
@@ -14573,9 +14906,9 @@ definitions['http2.d.ts'] = `declare module 'http2' {     import EventEmitter = 
         statusCode: number;
         statusMessage: '';
         addTrailers(trailers: OutgoingHttpHeaders): void;
-        end(callback?: () => void): void;
-        end(data: string | Uint8Array, callback?: () => void): void;
-        end(data: string | Uint8Array, encoding: BufferEncoding, callback?: () => void): void;
+        end(callback?: () => void): this;
+        end(data: string | Uint8Array, callback?: () => void): this;
+        end(data: string | Uint8Array, encoding: BufferEncoding, callback?: () => void): this;
         getHeader(name: string): string;
         getHeaderNames(): string[];
         getHeaders(): OutgoingHttpHeaders;
@@ -14869,6 +15202,9 @@ definitions['http2.d.ts'] = `declare module 'http2' {     import EventEmitter = 
         listener?: (session: ClientHttp2Session, socket: net.Socket | tls.TLSSocket) => void
     ): ClientHttp2Session;
 }
+declare module 'node:http2' {
+    export * from 'http2';
+}
 `;
 definitions['https.d.ts'] = `declare module 'https' {     import { Duplex } from 'stream';
     import * as tls from 'tls';
@@ -15008,8 +15344,11 @@ definitions['https.d.ts'] = `declare module 'https' {     import { Duplex } from
     function get(url: string | URL, options: RequestOptions, callback?: (res: http.IncomingMessage) => void): http.ClientRequest;
     let globalAgent: Agent;
 }
+declare module 'node:https' {
+    export * from 'https';
+}
 `;
-definitions['index.d.ts'] = `\/\/ Type definitions for non-npm package Node.js 14.17 \/\/ Project: https:\/\/nodejs.org/
+definitions['index.d.ts'] = `\/\/ Type definitions for non-npm package Node.js 14.18 \/\/ Project: https:\/\/nodejs.org/
 \/\/ Definitions by: Microsoft TypeScript <https:\/\/github.com/Microsoft>
 \/\/                 DefinitelyTyped <https:\/\/github.com/DefinitelyTyped>
 \/\/                 Alberto Schiabel <https:\/\/github.com/jkomyno>
@@ -15032,6 +15371,7 @@ definitions['index.d.ts'] = `\/\/ Type definitions for non-npm package Node.js 1
 \/\/                 Nikita Galkin <https:\/\/github.com/galkin>
 \/\/                 Parambir Singh <https:\/\/github.com/parambirs>
 \/\/                 Sebastian Silbermann <https:\/\/github.com/eps1lon>
+\/\/                 Seth Westphal <https:\/\/github.com/westy92>
 \/\/                 Simon Schick <https:\/\/github.com/SimonSchick>
 \/\/                 Thomas den Hollander <https:\/\/github.com/ThomasdenH>
 \/\/                 Wilco Bakker <https:\/\/github.com/WilcoBakker>
@@ -15041,16 +15381,15 @@ definitions['index.d.ts'] = `\/\/ Type definitions for non-npm package Node.js 1
 \/\/                 Thanik Bhongbhibhat <https:\/\/github.com/bhongy>
 \/\/                 Marcin Kopacz <https:\/\/github.com/chyzwar>
 \/\/                 Trivikram Kamat <https:\/\/github.com/trivikr>
-\/\/                 Minh Son Nguyen <https:\/\/github.com/nguymin4>
 \/\/                 Junxiao Shi <https:\/\/github.com/yoursunny>
 \/\/                 Ilia Baryshnikov <https:\/\/github.com/qwelias>
 \/\/                 ExE Boss <https:\/\/github.com/ExE-Boss>
-\/\/                 Surasak Chaisurin <https:\/\/github.com/Ryan-Willpower>
 \/\/                 Piotr Błażejewicz <https:\/\/github.com/peterblazejewicz>
 \/\/                 Anna Henningsen <https:\/\/github.com/addaleax>
 \/\/                 Victor Perin <https:\/\/github.com/victorperin>
 \/\/                 Yongsheng Zhang <https:\/\/github.com/ZYSzys>
 \/\/                 Bond <https:\/\/github.com/bondz>
+\/\/                 Linus Unnebäck <https:\/\/github.com/LinusU>
 \/\/ Definitions: https:\/\/github.com/DefinitelyTyped/DefinitelyTyped
 
 \/\/ NOTE: These definitions support NodeJS and TypeScript 3.7+
@@ -17025,7 +17364,7 @@ declare module 'inspector' {
          * Connects a session to the main thread inspector back-end.
          * An exception will be thrown if this API was not called on a Worker
          * thread.
-         * @since 12.11.0
+         * @since v12.11.0
          */
         connectToMainThread(): void;
 
@@ -18153,6 +18492,10 @@ declare module 'inspector' {
      */
     function waitForDebugger(): void;
 }
+declare module 'node:inspector' {
+    import EventEmitter = require('inspector');
+    export = EventEmitter;
+}
 `;
 definitions['module.d.ts'] = `declare module 'module' {     import { URL } from 'url';
     namespace Module {
@@ -18204,6 +18547,10 @@ definitions['module.d.ts'] = `declare module 'module' {     import { URL } from 
         constructor(id: string, parent?: Module);
     }
     export = Module;
+}
+declare module 'node:module' {
+    import module = require('module');
+    export = module;
 }
 `;
 definitions['net.d.ts'] = `declare module 'net' {     import * as stream from 'stream';
@@ -18263,6 +18610,7 @@ definitions['net.d.ts'] = `declare module 'net' {     import * as stream from 's
     }
 
     type SocketConnectOpts = TcpSocketConnectOpts | IpcSocketConnectOpts;
+    type SocketReadyState = 'opening' | 'open' | 'readOnly' | 'writeOnly' | 'closed';
 
     class Socket extends stream.Duplex {
         constructor(options?: SocketConstructorOpts);
@@ -18294,14 +18642,25 @@ definitions['net.d.ts'] = `declare module 'net' {     import * as stream from 's
         readonly destroyed: boolean;
         readonly localAddress: string;
         readonly localPort: number;
+        /**
+         * This property represents the state of the connection as a string.
+         * @see {https:\/\/nodejs.org/api/net.html#socketreadystate}
+         * @since v0.5.0
+         */
+        readonly readyState: SocketReadyState;
         readonly remoteAddress?: string | undefined;
         readonly remoteFamily?: string | undefined;
         readonly remotePort?: number | undefined;
+        /**
+         * The socket timeout in milliseconds as set by socket.setTimeout(). It is undefined if a timeout has not been set.
+         * @since v10.7.0
+         */
+        readonly timeout?: number | undefined;
 
         \/\/ Extended base methods
-        end(cb?: () => void): void;
-        end(buffer: Uint8Array | string, cb?: () => void): void;
-        end(str: Uint8Array | string, encoding?: BufferEncoding, cb?: () => void): void;
+        end(cb?: () => void): this;
+        end(buffer: Uint8Array | string, cb?: () => void): this;
+        end(str: Uint8Array | string, encoding?: BufferEncoding, cb?: () => void): this;
 
         /**
          * events.EventEmitter
@@ -18497,6 +18856,9 @@ definitions['net.d.ts'] = `declare module 'net' {     import * as stream from 's
     function isIP(input: string): number;
     function isIPv4(input: string): boolean;
     function isIPv6(input: string): boolean;
+}
+declare module 'node:net' {
+    export * from 'net';
 }
 `;
 definitions['os.d.ts'] = `declare module 'os' {     interface CpuInfo {
@@ -18737,6 +19099,9 @@ definitions['os.d.ts'] = `declare module 'os' {     interface CpuInfo {
      */
     function setPriority(pid: number, priority: number): void;
 }
+declare module 'node:os' {
+    export * from 'os';
+}
 `;
 definitions['path.d.ts'] = `declare module 'path' {     namespace path {
         /**
@@ -18793,18 +19158,19 @@ definitions['path.d.ts'] = `declare module 'path' {     namespace path {
              * Normalize a string path, reducing '..' and '.' parts.
              * When multiple slashes are found, they're replaced by a single one; when the path contains a trailing slash, it is preserved. On Windows backslashes are used.
              *
-             * @param p string path to normalize.
+             * @param path string path to normalize.
+             * @throws {TypeError} if \`path\` is not a string.
              */
-            normalize(p: string): string;
+            normalize(path: string): string;
             /**
              * Join all arguments together and normalize the resulting path.
-             * Arguments must be strings. In v0.8, non-string arguments were silently ignored. In v0.10 and up, an exception is thrown.
              *
              * @param paths paths to join.
+             * @throws {TypeError} if any of the path segments is not a string.
              */
             join(...paths: string[]): string;
             /**
-             * The right-most parameter is considered {to}.  Other parameters are considered an array of {from}.
+             * The right-most parameter is considered {to}. Other parameters are considered an array of {from}.
              *
              * Starting from leftmost {from} parameter, resolves {to} to an absolute path.
              *
@@ -18813,41 +19179,50 @@ definitions['path.d.ts'] = `declare module 'path' {     namespace path {
              * the current working directory is used as well. The resulting path is normalized,
              * and trailing slashes are removed unless the path gets resolved to the root directory.
              *
-             * @param pathSegments string paths to join.  Non-string arguments are ignored.
+             * @param paths A sequence of paths or path segments.
+             * @throws {TypeError} if any of the arguments is not a string.
              */
-            resolve(...pathSegments: string[]): string;
+            resolve(...paths: string[]): string;
             /**
              * Determines whether {path} is an absolute path. An absolute path will always resolve to the same location, regardless of the working directory.
              *
+             * If the given {path} is a zero-length string, \`false\` will be returned.
+             *
              * @param path path to test.
+             * @throws {TypeError} if \`path\` is not a string.
              */
-            isAbsolute(p: string): boolean;
+            isAbsolute(path: string): boolean;
             /**
-             * Solve the relative path from {from} to {to}.
+             * Solve the relative path from {from} to {to} based on the current working directory.
              * At times we have two absolute paths, and we need to derive the relative path from one to the other. This is actually the reverse transform of path.resolve.
+             *
+             * @throws {TypeError} if either \`from\` or \`to\` is not a string.
              */
             relative(from: string, to: string): string;
             /**
              * Return the directory name of a path. Similar to the Unix dirname command.
              *
-             * @param p the path to evaluate.
+             * @param path the path to evaluate.
+             * @throws {TypeError} if \`path\` is not a string.
              */
-            dirname(p: string): string;
+            dirname(path: string): string;
             /**
              * Return the last portion of a path. Similar to the Unix basename command.
              * Often used to extract the file name from a fully qualified path.
              *
-             * @param p the path to evaluate.
+             * @param path the path to evaluate.
              * @param ext optionally, an extension to remove from the result.
+             * @throws {TypeError} if \`path\` is not a string or if \`ext\` is given and is not a string.
              */
-            basename(p: string, ext?: string): string;
+            basename(path: string, ext?: string): string;
             /**
              * Return the extension of the path, from the last '.' to end of string in the last portion of the path.
-             * If there is no '.' in the last portion of the path or the first character of it is '.', then it returns an empty string
+             * If there is no '.' in the last portion of the path or the first character of it is '.', then it returns an empty string.
              *
-             * @param p the path to evaluate.
+             * @param path the path to evaluate.
+             * @throws {TypeError} if \`path\` is not a string.
              */
-            extname(p: string): string;
+            extname(path: string): string;
             /**
              * The platform-specific file separator. '\\' or '/'.
              */
@@ -18859,15 +19234,16 @@ definitions['path.d.ts'] = `declare module 'path' {     namespace path {
             /**
              * Returns an object from a path string - the opposite of format().
              *
-             * @param pathString path to evaluate.
+             * @param path path to evaluate.
+             * @throws {TypeError} if \`path\` is not a string.
              */
-            parse(p: string): ParsedPath;
+            parse(path: string): ParsedPath;
             /**
              * Returns a path string from an object - the opposite of parse().
              *
-             * @param pathString path to evaluate.
+             * @param pathObject path to evaluate.
              */
-            format(pP: FormatInputPathObject): string;
+            format(pathObject: FormatInputPathObject): string;
             /**
              * On Windows systems only, returns an equivalent namespace-prefixed path for the given path.
              * If path is not a string, path will be returned without modifications.
@@ -18888,6 +19264,10 @@ definitions['path.d.ts'] = `declare module 'path' {     namespace path {
         }
     }
     const path: path.PlatformPath;
+    export = path;
+}
+declare module 'node:path' {
+    import path = require('path');
     export = path;
 }
 `;
@@ -19161,6 +19541,9 @@ definitions['perf_hooks.d.ts'] = `declare module 'perf_hooks' {     import { Asy
 
     function monitorEventLoopDelay(options?: EventLoopMonitorOptions): EventLoopDelayMonitor;
 }
+declare module 'node:perf_hooks' {
+    export * from 'perf_hooks';
+}
 `;
 definitions['process.d.ts'] = `declare module 'process' {     import * as tty from 'tty';
 
@@ -19283,7 +19666,7 @@ definitions['process.d.ts'] = `declare module 'process' {     import * as tty fr
                 /**
                  * If true, a diagnostic report is generated when the process
                  * receives the signal specified by process.report.signal.
-                 * @defaul false
+                 * @default false
                  */
                 reportOnSignal: boolean;
 
@@ -19570,6 +19953,10 @@ definitions['process.d.ts'] = `declare module 'process' {     import * as tty fr
 
     export = process;
 }
+declare module 'node:process' {
+    import process = require('process');
+    export = process;
+}
 `;
 definitions['punycode.d.ts'] = `/**  * @deprecated since v7.0.0
  * The version of the punycode module bundled in Node.js is being deprecated.
@@ -19645,6 +20032,9 @@ declare module 'punycode' {
      */
     const version: string;
 }
+declare module 'node:punycode' {
+    export * from 'punycode';
+}
 `;
 definitions['querystring.d.ts'] = `declare module 'querystring' {     interface StringifyOptions {
         encodeURIComponent?: ((str: string) => string) | undefined;
@@ -19672,6 +20062,9 @@ definitions['querystring.d.ts'] = `declare module 'querystring' {     interface 
     const decode: typeof parse;
     function escape(str: string): string;
     function unescape(str: string): string;
+}
+declare module 'node:querystring' {
+    export * from 'querystring';
 }
 `;
 definitions['readline.d.ts'] = `declare module 'readline' {     import EventEmitter = require('events');
@@ -19720,6 +20113,7 @@ definitions['readline.d.ts'] = `declare module 'readline' {     import EventEmit
         resume(): this;
         close(): void;
         write(data: string | Buffer, key?: Key): void;
+        write(data: undefined | null | string | Buffer, key: Key): void;
 
         /**
          * Returns the real position of the cursor in relation to the input
@@ -19842,6 +20236,9 @@ definitions['readline.d.ts'] = `declare module 'readline' {     import EventEmit
      * Moves this WriteStream's cursor relative to its current position.
      */
     function moveCursor(stream: NodeJS.WritableStream, dx: number, dy: number, callback?: () => void): boolean;
+}
+declare module 'node:readline' {
+    export * from 'readline';
 }
 `;
 definitions['repl.d.ts'] = `declare module 'repl' {     import { Interface, Completer, AsyncCompleter } from 'readline';
@@ -20238,6 +20635,9 @@ definitions['repl.d.ts'] = `declare module 'repl' {     import { Interface, Comp
         constructor(err: Error);
     }
 }
+declare module 'node:repl' {
+    export * from 'repl';
+}
 `;
 definitions['stream.d.ts'] = `declare module 'stream' {     import EventEmitter = require('events');
 
@@ -20285,7 +20685,7 @@ definitions['stream.d.ts'] = `declare module 'stream' {     import EventEmitter 
             wrap(oldStream: NodeJS.ReadableStream): this;
             push(chunk: any, encoding?: BufferEncoding): boolean;
             _destroy(error: Error | null, callback: (error?: Error | null) => void): void;
-            destroy(error?: Error): void;
+            destroy(error?: Error): this;
 
             /**
              * Event emitter
@@ -20394,12 +20794,12 @@ definitions['stream.d.ts'] = `declare module 'stream' {     import EventEmitter 
             write(chunk: any, cb?: (error: Error | null | undefined) => void): boolean;
             write(chunk: any, encoding: BufferEncoding, cb?: (error: Error | null | undefined) => void): boolean;
             setDefaultEncoding(encoding: BufferEncoding): this;
-            end(cb?: () => void): void;
-            end(chunk: any, cb?: () => void): void;
-            end(chunk: any, encoding: BufferEncoding, cb?: () => void): void;
+            end(cb?: () => void): this;
+            end(chunk: any, cb?: () => void): this;
+            end(chunk: any, encoding: BufferEncoding, cb?: () => void): this;
             cork(): void;
             uncork(): void;
-            destroy(error?: Error): void;
+            destroy(error?: Error): this;
 
             /**
              * Event emitter
@@ -20500,9 +20900,9 @@ definitions['stream.d.ts'] = `declare module 'stream' {     import EventEmitter 
             write(chunk: any, encoding?: BufferEncoding, cb?: (error: Error | null | undefined) => void): boolean;
             write(chunk: any, cb?: (error: Error | null | undefined) => void): boolean;
             setDefaultEncoding(encoding: BufferEncoding): this;
-            end(cb?: () => void): void;
-            end(chunk: any, cb?: () => void): void;
-            end(chunk: any, encoding?: BufferEncoding, cb?: () => void): void;
+            end(cb?: () => void): this;
+            end(chunk: any, cb?: () => void): this;
+            end(chunk: any, encoding?: BufferEncoding, cb?: () => void): this;
             cork(): void;
             uncork(): void;
         }
@@ -20593,6 +20993,10 @@ definitions['stream.d.ts'] = `declare module 'stream' {     import EventEmitter 
 
     export = internal;
 }
+declare module 'node:stream' {
+    import stream = require('stream');
+    export = stream;
+}
 `;
 definitions['string_decoder.d.ts'] = `declare module 'string_decoder' {     class StringDecoder {
         constructor(encoding?: BufferEncoding);
@@ -20600,24 +21004,31 @@ definitions['string_decoder.d.ts'] = `declare module 'string_decoder' {     clas
         end(buffer?: Buffer): string;
     }
 }
+declare module 'node:string_decoder' {
+    export * from 'string_decoder';
+}
 `;
 definitions['timers.d.ts'] = `declare module 'timers' {     function setTimeout(callback: (...args: any[]) => void, ms?: number, ...args: any[]): NodeJS.Timeout;
     namespace setTimeout {
         function __promisify__(ms: number): Promise<void>;
         function __promisify__<T>(ms: number, value: T): Promise<T>;
     }
-    function clearTimeout(timeoutId: NodeJS.Timeout): void;
+    function clearTimeout(timeoutId: NodeJS.Timeout | string | number | undefined): void;
     function setInterval(callback: (...args: any[]) => void, ms?: number, ...args: any[]): NodeJS.Timeout;
-    function clearInterval(intervalId: NodeJS.Timeout): void;
+    function clearInterval(intervalId: NodeJS.Timeout | string | number | undefined): void;
     function setImmediate(callback: (...args: any[]) => void, ...args: any[]): NodeJS.Immediate;
     namespace setImmediate {
         function __promisify__(): Promise<void>;
         function __promisify__<T>(value: T): Promise<T>;
     }
-    function clearImmediate(immediateId: NodeJS.Immediate): void;
+    function clearImmediate(immediateId: NodeJS.Immediate | undefined): void;
+}
+declare module 'node:timers' {
+    export * from 'timers';
 }
 `;
 definitions['tls.d.ts'] = `declare module 'tls' {     import * as net from 'net';
+    import * as stream from 'stream';
 
     const CLIENT_RENEG_LIMIT: number;
     const CLIENT_RENEG_WINDOW: number;
@@ -20764,7 +21175,7 @@ definitions['tls.d.ts'] = `declare module 'tls' {     import * as net from 'net'
          * Static boolean value, always true.
          * May be used to distinguish TLS sockets from regular ones.
          */
-        encrypted: boolean;
+        encrypted: true;
 
         /**
          * String containing the selected ALPN protocol.
@@ -21059,7 +21470,7 @@ definitions['tls.d.ts'] = `declare module 'tls' {     import * as net from 'net'
         host?: string | undefined;
         port?: number | undefined;
         path?: string | undefined; \/\/ Creates unix socket connection to path. If this option is specified, \`host\` and \`port\` are ignored.
-        socket?: net.Socket | undefined; \/\/ Establish secure connection on a given socket rather than creating a new socket
+        socket?: stream.Duplex | undefined; \/\/ Establish secure connection on a given socket rather than creating a new socket
         checkServerIdentity?: typeof checkServerIdentity | undefined;
         servername?: string | undefined; \/\/ SNI TLS Extension
         session?: Buffer | undefined;
@@ -21396,6 +21807,9 @@ definitions['tls.d.ts'] = `declare module 'tls' {     import * as net from 'net'
      */
     const rootCertificates: ReadonlyArray<string>;
 }
+declare module 'node:tls' {
+    export * from 'tls';
+}
 `;
 definitions['trace_events.d.ts'] = `declare module 'trace_events' {     /**
      * The \`Tracing\` object is used to enable or disable tracing for sets of
@@ -21456,6 +21870,9 @@ definitions['trace_events.d.ts'] = `declare module 'trace_events' {     /**
      * any categories enabled using the \`--trace-event-categories\` flag.
      */
     function getEnabledCategories(): string | undefined;
+}
+declare module 'node:trace_events' {
+    export * from 'trace_events';
 }
 `;
 definitions['tty.d.ts'] = `declare module 'tty' {     import * as net from 'net';
@@ -21522,6 +21939,9 @@ definitions['tty.d.ts'] = `declare module 'tty' {     import * as net from 'net'
         rows: number;
         isTTY: boolean;
     }
+}
+declare module 'node:tty' {
+    export * from 'tty';
 }
 `;
 definitions['url.d.ts'] = `declare module 'url' {     import { ParsedUrlQuery, ParsedUrlQueryInput } from 'querystring';
@@ -21627,7 +22047,7 @@ definitions['url.d.ts'] = `declare module 'url' {     import { ParsedUrlQuery, P
         append(name: string, value: string): void;
         delete(name: string): void;
         entries(): IterableIterator<[string, string]>;
-        forEach(callback: (value: string, name: string, searchParams: this) => void): void;
+        forEach(callback: (value: string, name: string, searchParams: URLSearchParams) => void, thisArg?: any): void;
         get(name: string): string | null;
         getAll(name: string): string[];
         has(name: string): boolean;
@@ -21638,6 +22058,39 @@ definitions['url.d.ts'] = `declare module 'url' {     import { ParsedUrlQuery, P
         values(): IterableIterator<string>;
         [Symbol.iterator](): IterableIterator<[string, string]>;
     }
+
+    import { URL as _URL, URLSearchParams as _URLSearchParams } from 'url';
+    global {
+        interface URLSearchParams extends _URLSearchParams {}
+        interface URL extends _URL {}
+        interface Global {
+            URL: typeof _URL;
+            URLSearchParams: typeof _URLSearchParams;
+        }
+        /**
+         * \`URL\` class is a global reference for \`require('url').URL\`
+         * https:\/\/nodejs.org/api/url.html#the-whatwg-url-api
+         * @since v10.0.0
+         */
+        var URL:
+            \/\/ For compatibility with "dom" and "webworker" URL declarations
+            typeof globalThis extends { onmessage: any, URL: infer URL }
+                ? URL
+                : typeof _URL;
+        /**
+         * \`URLSearchParams\` class is a global reference for \`require('url').URLSearchParams\`.
+         * https:\/\/nodejs.org/api/url.html#class-urlsearchparams
+         * @since v10.0.0
+         */
+        var URLSearchParams:
+            \/\/ For compatibility with "dom" and "webworker" URLSearchParams declarations
+            typeof globalThis extends { onmessage: any, URLSearchParams: infer URLSearchParams }
+                ? URLSearchParams
+                : typeof _URLSearchParams;
+    }
+}
+declare module 'node:url' {
+    export * from 'url';
 }
 `;
 definitions['util.d.ts'] = `declare module 'util' {     interface InspectOptions extends NodeJS.InspectOptions { }
@@ -21648,6 +22101,7 @@ definitions['util.d.ts'] = `declare module 'util' {     interface InspectOptions
     }
     function format(format?: any, ...param: any[]): string;
     function formatWithOptions(inspectOptions: InspectOptions, format?: any, ...param: any[]): string;
+    function getSystemErrorName(err: number): string;
     /** @deprecated since v0.11.3 - use a third party module instead. */
     function log(string: string): void;
     function inspect(object: any, showHidden?: boolean, depth?: number | null, color?: boolean): string;
@@ -21673,7 +22127,12 @@ definitions['util.d.ts'] = `declare module 'util' {     interface InspectOptions
     /** @deprecated since v4.0.0 - use \`util.types.isNativeError()\` instead. */
     function isError(object: any): object is Error;
     function inherits(constructor: any, superConstructor: any): void;
-    function debuglog(key: string): (msg: string, ...param: any[]) => void;
+    type DebugLoggerFunction = (msg: string, ...param: any[]) => void;
+    interface DebugLogger extends DebugLoggerFunction {
+        enabled: boolean;
+    }
+    function debuglog(key: string, callback?: (fn: DebugLoggerFunction) => void): DebugLogger;
+    const debug: typeof debuglog;
     /** @deprecated since v4.0.0 - use \`typeof value === 'boolean'\` instead. */
     function isBoolean(object: any): object is boolean;
     /** @deprecated since v4.0.0 - use \`Buffer.isBuffer()\` instead. */
@@ -21845,6 +22304,9 @@ definitions['util.d.ts'] = `declare module 'util' {     interface InspectOptions
         encode(input?: string): Uint8Array;
         encodeInto(input: string, output: Uint8Array): EncodeIntoResult;
     }
+}
+declare module 'node:util' {
+    export * from 'util';
 }
 `;
 definitions['v8.d.ts'] = `declare module 'v8' {     import { Readable } from 'stream';
@@ -22033,6 +22495,9 @@ definitions['v8.d.ts'] = `declare module 'v8' {     import { Readable } from 'st
      */
     function deserialize(data: NodeJS.TypedArray): any;
 }
+declare module 'node:v8' {
+    export * from 'v8';
+}
 `;
 definitions['vm.d.ts'] = `declare module 'vm' {     interface Context extends NodeJS.Dict<any> { }
     interface BaseOptions {
@@ -22185,6 +22650,9 @@ definitions['vm.d.ts'] = `declare module 'vm' {     interface Context extends No
      */
     function measureMemory(options?: MeasureMemoryOptions): Promise<MemoryMeasurement>;
 }
+declare module 'node:vm' {
+    export * from 'vm';
+}
 `;
 definitions['wasi.d.ts'] = `declare module 'wasi' {     interface WASIOptions {
         /**
@@ -22270,6 +22738,9 @@ definitions['wasi.d.ts'] = `declare module 'wasi' {     interface WASIOptions {
          */
         readonly wasiImport: NodeJS.Dict<any>; \/\/ TODO: Narrow to DOM types
     }
+}
+declare module 'node:wasi' {
+    export * from 'wasi';
 }
 `;
 definitions['worker_threads.d.ts'] = `declare module 'worker_threads' {     import { Context } from 'vm';
@@ -22508,6 +22979,9 @@ definitions['worker_threads.d.ts'] = `declare module 'worker_threads' {     impo
      * \`MessagePort\`’s queue.
      */
     function receiveMessageOnPort(port: MessagePort): { message: any } | undefined;
+}
+declare module 'node:worker_threads' {
+    export * from 'worker_threads';
 }
 `;
 definitions['zlib.d.ts'] = `declare module 'zlib' {     import * as stream from 'stream';
@@ -22869,5 +23343,8 @@ definitions['zlib.d.ts'] = `declare module 'zlib' {     import * as stream from 
     const Z_UNKNOWN: number;
     /** @deprecated */
     const Z_DEFLATED: number;
+}
+declare module 'node:zlib' {
+    export * from 'zlib';
 }
 `;export default definitions;
